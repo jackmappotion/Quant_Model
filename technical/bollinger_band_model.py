@@ -1,0 +1,62 @@
+class BOLLINGER_BAND_MODEL:
+    def __init__(self, data) -> None:
+        self.data = data
+
+    @staticmethod
+    def append_ma(data, CFG):
+        """
+        ma : moving_average
+        """
+        window = CFG["ma_window"]
+        data["MA"] = data["Value"].rolling(window=window).mean()
+        return data
+
+    @staticmethod
+    def append_std(data, CFG):
+        """
+        std : moving_average_std
+        """
+        window = CFG["ma_window"]
+        data["STD"] = data["Value"].rolling(window=window).std()
+        return data
+
+    @staticmethod
+    def append_lowerband(data, CFG):
+        """
+        LowerBand
+        """
+        std_coef = CFG["std_coef"]
+        data["LowerBand"] = data["MA"] - std_coef * data["STD"]
+        return data
+
+    @staticmethod
+    def append_upperband(data, CFG):
+        """
+        UpperBand
+        """
+        std_coef = CFG["std_coef"]
+        data["UpperBand"] = data["MA"] + std_coef * data["STD"]
+        return data
+
+    @staticmethod
+    def append_signal(data):
+        """
+        signal : {1:매수, -1:매도}
+        """
+        data["Signal"] = 0
+        data.loc[data["Value"] > data["UpperBand"], "Signal"] = -1
+        data.loc[data["Value"] < data["LowerBand"], "Signal"] = 1
+        return data
+
+    def __call__(self, CFG):
+        data = self.data
+
+        data = self.append_ma(data, CFG)
+        data = self.append_std(data, CFG)
+        data = self.append_lowerband(data, CFG)
+        data = self.append_upperband(data, CFG)
+        
+        data = self.append_signal(data)
+
+        return data
+    
