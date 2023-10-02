@@ -33,7 +33,7 @@ class MONEY_FLOW_MODEL:
         return data
 
     @staticmethod
-    def append_nmfr(data, window):
+    def append_nmfr(data):
         """
         NMFR : Negative Money Flow Ratio
         """
@@ -65,7 +65,7 @@ class MONEY_FLOW_MODEL:
         data = self.append_nmf(data)
 
         data = self.append_pmfr(data, CFG["window"])
-        data = self.append_nmfr(data, CFG["window"])
+        data = self.append_nmfr(data)
 
         data = self.append_mfi(data)
 
