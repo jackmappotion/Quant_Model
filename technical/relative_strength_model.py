@@ -7,7 +7,7 @@ class RELATIVE_STRENGTH_MODEL:
         """
         Diff : Value Difference
         """
-        data["Diff"] = stock_df["Value"].diff(periods=1)
+        data["Diff"] = data["Price"].diff(periods=1)
         return data
 
     @staticmethod
