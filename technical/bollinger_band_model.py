@@ -8,7 +8,7 @@ class BOLLINGER_BAND_MODEL:
         ma : moving_average
         """
         window = CFG["ma_window"]
-        data["MA"] = data["Value"].rolling(window=window).mean()
+        data["MA"] = data["Price"].rolling(window=window).mean()
         return data
 
     @staticmethod
@@ -17,7 +17,7 @@ class BOLLINGER_BAND_MODEL:
         std : moving_average_std
         """
         window = CFG["ma_window"]
-        data["STD"] = data["Value"].rolling(window=window).std()
+        data["STD"] = data["Price"].rolling(window=window).std()
         return data
 
     @staticmethod
@@ -44,8 +44,8 @@ class BOLLINGER_BAND_MODEL:
         signal : {1:매수, -1:매도}
         """
         data["Signal"] = 0
-        data.loc[data["Value"] > data["UpperBand"], "Signal"] = -1
-        data.loc[data["Value"] < data["LowerBand"], "Signal"] = 1
+        data.loc[data["Price"] > data["UpperBand"], "Signal"] = -1
+        data.loc[data["Price"] < data["LowerBand"], "Signal"] = 1
         return data
 
     def __call__(self, CFG):
