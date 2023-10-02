@@ -4,12 +4,12 @@ class STOCHASTIC_OSCILLATOR_MODEL:
 
     @staticmethod
     def append_lowestlow(data, window=14):
-        data["LowestLow"] = data["Value"].rolling(window=window).min()
+        data["LowestLow"] = data["Price"].rolling(window=window).min()
         return data
 
     @staticmethod
     def append_highesthigh(data, window=14):
-        data["HighestHigh"] = data["Value"].rolling(window=window).max()
+        data["HighestHigh"] = data["Price"].rolling(window=window).max()
         return data
 
     @staticmethod
@@ -18,7 +18,7 @@ class STOCHASTIC_OSCILLATOR_MODEL:
         FSO : Fast Stochastic Oscillator
         """
         data["FSO"] = (
-            (data["Value"] - data["LowestLow"])
+            (data["Price"] - data["LowestLow"])
             / (data["HighestHigh"] - data["LowestLow"])
         ) * 100
         return data
