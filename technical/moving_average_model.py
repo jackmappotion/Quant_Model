@@ -8,7 +8,7 @@ class MOVING_AVERAGE_MODEL:
         stma : short_term_moving_average
         """
         short_window = CFG["stma_window"]
-        data["STMA"] = data["Value"].rolling(window=short_window).mean()
+        data["STMA"] = data["Price"].rolling(window=short_window).mean()
         return data
 
     @staticmethod
@@ -17,7 +17,7 @@ class MOVING_AVERAGE_MODEL:
         ltma : long_term_moving_average
         """
         long_window = CFG["ltma_window"]
-        data["LTMA"] = data["Value"].rolling(window=long_window).mean()
+        data["LTMA"] = data["Price"].rolling(window=long_window).mean()
         return data
 
     @staticmethod
