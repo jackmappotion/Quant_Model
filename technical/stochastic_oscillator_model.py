@@ -1,4 +1,7 @@
 class STOCHASTIC_OSCILLATOR_MODEL:
+    """
+    Price
+    """
     def __init__(self, data) -> None:
         self.data = data
 
