@@ -38,6 +38,7 @@ class MOVING_AVERAGE_MODEL:
 
         data = self.append_stma(data, CFG)
         data = self.append_ltma(data, CFG)
+        
         data = self.append_signal(data)
-
+        
         return data
