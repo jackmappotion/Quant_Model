@@ -1,4 +1,7 @@
 class BOLLINGER_BAND_MODEL:
+    """
+    "Price"
+    """
     def __init__(self, data) -> None:
         self.data = data
 
