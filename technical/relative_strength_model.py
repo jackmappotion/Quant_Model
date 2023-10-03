@@ -1,4 +1,7 @@
 class RELATIVE_STRENGTH_MODEL:
+    """
+    Price
+    """
     def __init__(self, data) -> None:
         self.data = data
 
