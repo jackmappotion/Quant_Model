@@ -4,11 +4,17 @@ class STOCHASTIC_OSCILLATOR_MODEL:
 
     @staticmethod
     def append_lowestlow(data, window=14):
+        """
+        LowestLow : lowest_low
+        """
         data["LowestLow"] = data["Price"].rolling(window=window).min()
         return data
 
     @staticmethod
     def append_highesthigh(data, window=14):
+        """
+        HighestHigh : highest_high
+        """
         data["HighestHigh"] = data["Price"].rolling(window=window).max()
         return data
 
@@ -33,6 +39,9 @@ class STOCHASTIC_OSCILLATOR_MODEL:
 
     @staticmethod
     def append_signal(data):
+        """
+        Signal : {1:매수, -1:매도}
+        """
         data["Signal"] = 0
         data.loc[(data["FSO"] < data["SSO"]) & (data["FSO"] < 20), "Signal"] = 0.5
         data.loc[(data["FSO"] > data["SSO"]) & (data["FSO"] < 20), "Signal"] = 1
