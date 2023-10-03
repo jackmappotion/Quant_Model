@@ -51,7 +51,7 @@ class MONEY_FLOW_MODEL:
     @staticmethod
     def append_signal(data):
         """
-        signal : {1:매수, -1:매도}
+        Signal : {1:매수, -1:매도}
         """
         data["Signal"] = 0
         data.loc[data["MFI"] < 30, "Signal"] = 1
