@@ -5,7 +5,7 @@ class MOVING_AVERAGE_MODEL:
     @staticmethod
     def append_stma(data, CFG):
         """
-        stma : short_term_moving_average
+        STMA : short_term_moving_average
         """
         short_window = CFG["stma_window"]
         data["STMA"] = data["Price"].rolling(window=short_window).mean()
@@ -14,7 +14,7 @@ class MOVING_AVERAGE_MODEL:
     @staticmethod
     def append_ltma(data, CFG):
         """
-        ltma : long_term_moving_average
+        LTMA : long_term_moving_average
         """
         long_window = CFG["ltma_window"]
         data["LTMA"] = data["Price"].rolling(window=long_window).mean()
