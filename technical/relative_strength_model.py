@@ -12,6 +12,9 @@ class RELATIVE_STRENGTH_MODEL:
 
     @staticmethod
     def append_gain(data):
+        """
+        Gain : gain
+        """
         data["Gain"] = data["Diff"].apply(lambda x: x if x > 0 else 0)
         return data
 
@@ -26,6 +29,9 @@ class RELATIVE_STRENGTH_MODEL:
 
     @staticmethod
     def append_loss(data):
+        """
+        Loss : loss
+        """
         data["Loss"] = data["Diff"].apply(lambda x: -x if x < 0 else 0)
         return data
 
@@ -57,7 +63,7 @@ class RELATIVE_STRENGTH_MODEL:
     @staticmethod
     def append_signal(data):
         """
-        signal : {1:매수, -1:매도}
+        Signal : {1:매수, -1:매도}
         """
         data["Signal"] = 0
         data.loc[data["RSI"] < 30, "Signal"] = 1
