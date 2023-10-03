@@ -1,7 +1,8 @@
-from typing import Any
-
-
 class MONEY_FLOW_MODEL:
+    """
+    Price
+    Volume
+    """
     def __init__(self, data) -> None:
         self.data = data
 
