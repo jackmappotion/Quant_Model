@@ -5,7 +5,7 @@ class BOLLINGER_BAND_MODEL:
     @staticmethod
     def append_ma(data, CFG):
         """
-        ma : moving_average
+        MA : moving_average
         """
         window = CFG["ma_window"]
         data["MA"] = data["Price"].rolling(window=window).mean()
@@ -14,7 +14,7 @@ class BOLLINGER_BAND_MODEL:
     @staticmethod
     def append_std(data, CFG):
         """
-        std : moving_average_std
+        STD : moving_average_std
         """
         window = CFG["ma_window"]
         data["STD"] = data["Price"].rolling(window=window).std()
@@ -23,7 +23,7 @@ class BOLLINGER_BAND_MODEL:
     @staticmethod
     def append_lowerband(data, CFG):
         """
-        LowerBand
+        LowerBand : lower_band
         """
         std_coef = CFG["std_coef"]
         data["LowerBand"] = data["MA"] - std_coef * data["STD"]
@@ -32,7 +32,7 @@ class BOLLINGER_BAND_MODEL:
     @staticmethod
     def append_upperband(data, CFG):
         """
-        UpperBand
+        UpperBand : upper_band
         """
         std_coef = CFG["std_coef"]
         data["UpperBand"] = data["MA"] + std_coef * data["STD"]
@@ -41,7 +41,7 @@ class BOLLINGER_BAND_MODEL:
     @staticmethod
     def append_signal(data):
         """
-        signal : {1:매수, -1:매도}
+        Signal : {1:매수, -1:매도}
         """
         data["Signal"] = 0
         data.loc[data["Price"] > data["UpperBand"], "Signal"] = -1
